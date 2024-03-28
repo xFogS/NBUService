@@ -11,7 +11,7 @@ namespace PC
     {
         public int? r030 { get; set; }
         public string? txt { get; set; } = null!;
-        public double? rate { get; set; }
+        public decimal? rate { get; set; }
         public string? cc { get; set; } = null!;
         public DateTime? exchangedate { get; set; }
 
@@ -30,12 +30,12 @@ namespace PC
                 List<ExchangeDocument> exchanges = [];
                 foreach (XmlNode i in xml!.ChildNodes[1])
                 {
-                    if (Convert.ToDouble(i.ChildNodes[2]!.FirstChild!.Value.Replace('.', ',')) > 20)
+                    if (Convert.ToDecimal(i.ChildNodes[2]!.FirstChild!.Value.Replace('.', ',')) > 20)
                     {
                         ExchangeDocument doc = new ExchangeDocument();
                         doc.r030 = Convert.ToInt32(i.ChildNodes[0]!.FirstChild!.Value);
                         doc.txt = i.ChildNodes[1]!.FirstChild?.Value;
-                        doc.rate = Convert.ToDouble
+                        doc.rate = Convert.ToDecimal
                             (i.ChildNodes[2]!
                             .FirstChild?.Value
                             .Replace('.', ','));
